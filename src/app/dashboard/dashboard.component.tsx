@@ -2,53 +2,38 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import { Residence } from '../../model/entities';
-import { ResidenceComponent } from './residence-view.component';
-
+import { ResidencesListComponent } from './residence-list-view.component';
 
 export const Dashboard = () => (
   <Container fluid={true}>
-    <ResidenceComponent residence={datasourceResidences[0]}  />
+    
+    <ResidencesListComponent residences={datasourceResidences} />
   </Container>
 );
 
 const datasourceResidences: Residence[] = [
   {
-    id: '1',
-    machines: [
-      {
-        order: 1,
-        deadline: new Date(),
-      },
-      {
-        order: 2,
-        deadline: new Date(),
-      },
-    ],
+    id: 1,
+    hotel: "Hotel Golden Park",
+    address: "Rodovia Floriano Rodrigues Pinheiro, 2000",
+    bedroomName: "Quarto Duplo Standard",
+    city: "Campos do Jordão",
+    availablePlaces: 2,
   },
   {
-    id: '4B',
-    machines: [
-      {
-        order: 1,
-        deadline: new Date(),
-      },
-    ],
+    id: 2,
+    hotel: "Hotel Golden Park",
+    address: "Rodovia Floriano Rodrigues Pinheiro, 2000",
+    bedroomName: "Quarto Duplo Superior",
+    city: "Campos do Jordão",
+    availablePlaces: 2,
   },
   {
-    id: '4DD',
-    machines: [
-      {
-        order: 1,
-        deadline: new Date(),
-      },
-      {
-        order: 2,
-        deadline: new Date(),
-      },
-      {
-        order: 3,
-        deadline: new Date(),
-      },
-    ],
+    id: 3,
+    hotel: "Hotel Leão da Montanha",
+    address: "Rua Dr. Raul Mesquita, 443",
+    bedroomName: "Quarto Duplo Standard",
+    city: "Campos do Jordão",
+    availablePlaces: 2,
   },
 ];

@@ -1,14 +1,8 @@
 export let Strings = {
   AppName: 'Travel Simple',
   Components: {
-    Machine: {
-      Machine: 'Machine',
-      RemainingTime: 'Remaining: ',
-      Button: {
-        Available: 'Set time',
-        Busy: 'Busy',
-        Cancel: 'Cancel',
-      }
+    Residence: {
+      AvailablePlaces: "Locais disponíveis: "
     },
     SetTimeDialog: {
       NotFound: 'Machine not found',

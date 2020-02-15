@@ -1,5 +1,5 @@
-import WashingMachineImg from './washing-machine.png';
+import ResidenceImg from './residence.png';
 
 export {
-  WashingMachineImg,
+  ResidenceImg,
 }

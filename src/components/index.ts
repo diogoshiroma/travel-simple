@@ -1,2 +1,2 @@
 export * from './typography.style';
-export * from './mol.machine-view';
+export * from './mol.residence-view';

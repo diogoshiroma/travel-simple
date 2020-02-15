@@ -1,6 +1,8 @@
-import { Machine } from "./machine";
-
 export interface Residence {
-  id: string;
-  machines: Machine[];
+  id: number;
+  hotel: string;
+  address: string;
+  bedroomName: string;
+  city: string;
+  availablePlaces: number;
 }
