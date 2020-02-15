@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Residence } from '../../model/entities';
-import { ResidenceCard } from '../../components';
-import { ResidencesListStyled } from './residence-list-view.style';
+import { ResidenceCard } from '..';
+import { ResidencesListStyled } from './residences-list.component.style';
 import Col from 'react-bootstrap/Col';
 
 interface ResidencesListProps {

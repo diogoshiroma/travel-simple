@@ -1,13 +1,10 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container';
 import { Residence } from '../../model/entities';
-import { ResidencesListComponent } from './residence-list-view.component';
+import { ResidencesListComponent } from '../../components/mol.residences-list/residences-list.component';
 
-export const Dashboard = () => (
-  <Container fluid={true}>
-    <ResidencesListComponent residences={datasourceResidences} />
-  </Container>
+export const SearchForm = () => (
+  <ResidencesListComponent residences={datasourceResidences} />
 );
 
 const datasourceResidences: Residence[] = [
