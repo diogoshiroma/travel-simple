@@ -8,22 +8,25 @@ interface ResidencesListProps {
   residences: Residence[];
 }
 
+const RESIDENCES_PER_ROW = 4;
+
 export const ResidencesListComponent = (props: ResidencesListProps) => {
   return (
     <>
       <VSeparator />
       <Row>
         {props.residences.map((res, index) => {
-          const key: string = "" + index;
-          return (
-            <Col md={3} key={key}>
-              <ResidenceCard
-                residence={res}
-                onClick={() => alert(res.bedroomName)}
-              />
-            </Col>
-          );
-        })}
+            const key: string = "" + index;
+            return (
+              <Col md={12 / RESIDENCES_PER_ROW} key={key}>
+                <ResidenceCard
+                  residence={res}
+                  onClick={() => alert(res.bedroomName)}
+                />
+              </Col>
+            );
+          })
+        }
       </Row>
     </>
   );
