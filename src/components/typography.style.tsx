@@ -12,6 +12,8 @@ export const H3 = styled.h3`
 `;
 
 export const ErrorMessage = styled.body`
-  font-size: ${FontSize.XXSmall};
+  font-size: ${FontSize.XLarge};
+  font-weight: bold;
   color: ${Color.Alert};
+  text-align: center;
 `;

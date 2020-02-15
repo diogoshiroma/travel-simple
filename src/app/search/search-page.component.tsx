@@ -4,6 +4,8 @@ import { Residence } from '../../model/entities';
 import { ResidencesListComponent } from '../../components/mol.residences-list/residences-list.component';
 import { SearchForm } from '../../components/org.search-form';
 import { VSeparator } from '../../components/atm.separators';
+import { ErrorMessage } from '../../components/typography.style';
+import { Strings } from '../../resources';
 
 interface SearchPageInterface {
   onChangeCity: (event: any) => void;
@@ -30,7 +32,13 @@ export const SearchPage = (props: SearchPageInterface) => {
         onSubmit={handleSubmit}
       />
       {
-        resList.length > 0 && <ResidencesListComponent residences={resList} />
+        resList.length > 0 ?
+          <ResidencesListComponent residences={resList} />
+        :
+          <>
+            <VSeparator />
+            <ErrorMessage>{Strings.Components.ResidencesForm.NoResFound}</ErrorMessage>
+          </>
       }
     </>
   );

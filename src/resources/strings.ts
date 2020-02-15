@@ -9,6 +9,7 @@ export let Strings = {
       CheckinDate: "Data de entrada",
       CheckoutDate: "Data de saída",
       Submit: "Buscar quartos!",
+      NoResFound: "Nenhum quarto encontrado! :-(",
       Placeholder: {
         City: "Informe a cidade de destino",
         CheckinDate: "Informe a data de entrada",
