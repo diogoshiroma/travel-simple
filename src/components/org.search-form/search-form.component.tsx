@@ -7,7 +7,14 @@ import { Strings } from '../../resources';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 
-export const SearchForm = () => {
+interface SearchFormInterface {
+  onChangeCity: (event: any) => void;
+  onChangeCheckinDate: (event: any) => void;
+  onChangeCheckoutDate: (event: any) => void;
+  onSubmit: () => void;
+}
+
+export const SearchForm = (props: SearchFormInterface) => {
   return (
     <Form>
       <Container>
@@ -15,7 +22,11 @@ export const SearchForm = () => {
           <Col sm={12}>
             <Form.Group controlId="formCity">
               <Form.Label>{Strings.Components.ResidencesForm.City}</Form.Label>
-              <Form.Control type="input" placeholder={Strings.Components.ResidencesForm.Placeholder.City} />
+              <Form.Control
+                type="input"
+                placeholder={Strings.Components.ResidencesForm.Placeholder.City}
+                onChange={props.onChangeCity}
+              />
             </Form.Group>
           </Col>
         </Row>
@@ -24,20 +35,28 @@ export const SearchForm = () => {
           <Col sm={5}>
             <Form.Group controlId="formCheckinDate">
               <Form.Label>{Strings.Components.ResidencesForm.CheckinDate}</Form.Label>
-              <Form.Control type="password" placeholder={Strings.Components.ResidencesForm.Placeholder.CheckinDate} />
+              <Form.Control
+                type="password"
+                placeholder={Strings.Components.ResidencesForm.Placeholder.CheckinDate}
+                onChange={props.onChangeCheckinDate}
+              />
             </Form.Group>
           </Col>
           <Col sm={{ span: 5, offset: 2 }}>
             <Form.Group controlId="formCheckoutDate">
               <Form.Label>{Strings.Components.ResidencesForm.CheckoutDate}</Form.Label>
-              <Form.Control type="password" placeholder={Strings.Components.ResidencesForm.Placeholder.CheckoutDate} />
+              <Form.Control
+                type="password"
+                placeholder={Strings.Components.ResidencesForm.Placeholder.CheckoutDate}
+                onChange={props.onChangeCheckoutDate}
+              />
             </Form.Group>
           </Col>
         </Row>
 
         <Row noGutters={true}>
           <Col>
-            <Button variant="primary" type="submit" block>{Strings.Components.ResidencesForm.Submit}</Button>
+            <Button variant="primary" onClick={props.onSubmit} block>{Strings.Components.ResidencesForm.Submit}</Button>
           </Col>
         </Row>
       </Container>

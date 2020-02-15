@@ -4,67 +4,33 @@ import { Residence } from '../../model/entities';
 import { ResidencesListComponent } from '../../components/mol.residences-list/residences-list.component';
 import { SearchForm } from '../../components/org.search-form';
 
+interface SearchPageInterface {
+  onChangeCity: (event: any) => void;
+  onChangeCheckinDate: (event: any) => void;
+  onChangeCheckoutDate: (event: any) => void;
+  matchResidences: () => Residence[];
+}
 
+export const SearchPage = (props: SearchPageInterface) => {
+  const [resList, setResList] = React.useState<Residence[]>([]);
+  
+  const handleSubmit = () => {
+    const list = props.matchResidences();
+    setResList(list);
+  };
 
-export const SearchPage = () => {
   return (
     <>
-      <SearchForm />
+      <SearchForm
+        onChangeCity={props.onChangeCity}
+        onChangeCheckinDate={props.onChangeCheckinDate}
+        onChangeCheckoutDate={props.onChangeCheckoutDate}
+        onSubmit={handleSubmit}
+      />
       {
-        null &&
-          <ResidencesListComponent residences={datasourceResidences} />
+        resList.length > 0 &&
+          <ResidencesListComponent residences={resList} />
       }
     </>
   );
 };
-
-const datasourceResidences: Residence[] = [
-  {
-    id: 1,
-    hotel: "Hotel Golden Park",
-    address: "Rodovia Floriano Rodrigues Pinheiro, 2000",
-    bedroomName: "Quarto Duplo Standard",
-    city: "Campos do Jordão",
-    availablePlaces: 2,
-  },
-  {
-    id: 2,
-    hotel: "Hotel Golden Park",
-    address: "Rodovia Floriano Rodrigues Pinheiro, 2000",
-    bedroomName: "Quarto Duplo Superior",
-    city: "Campos do Jordão",
-    availablePlaces: 2,
-  },
-  {
-    id: 3,
-    hotel: "Hotel Leão da Montanha",
-    address: "Rua Dr. Raul Mesquita, 443",
-    bedroomName: "Quarto Duplo Standard",
-    city: "Campos do Jordão",
-    availablePlaces: 2,
-  },
-  {
-    id: 4,
-    hotel: "Hotel Golden Park",
-    address: "Rodovia Floriano Rodrigues Pinheiro, 2000",
-    bedroomName: "Quarto Duplo Standard",
-    city: "São Paulo",
-    availablePlaces: 2,
-  },
-  {
-    id: 5,
-    hotel: "Hotel Golden Park",
-    address: "Rodovia Floriano Rodrigues Pinheiro, 2000",
-    bedroomName: "Quarto Duplo Superior",
-    city: "São Paulo",
-    availablePlaces: 2,
-  },
-  {
-    id: 6,
-    hotel: "Hotel Leão da Montanha",
-    address: "Rua Dr. Raul Mesquita, 443",
-    bedroomName: "Quarto Duplo Standard",
-    city: "São Paulo",
-    availablePlaces: 2,
-  },
-];
