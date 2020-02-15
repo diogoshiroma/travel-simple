@@ -1,5 +1,5 @@
 import React from 'react';
-import { SearchForm } from './app/search-form/search-form.component';
+import { SearchPage } from './app/search/search-page.component';
 import { PageTitle } from './components/mol.page-title';
 import Container from 'react-bootstrap/Container';
 
@@ -8,7 +8,7 @@ export class TravelSimpleApp extends React.Component {
 		return (
 			<Container fluid={true}>
 				<PageTitle />
-				<SearchForm />
+				<SearchPage />
 			</Container>
 		);
 	}

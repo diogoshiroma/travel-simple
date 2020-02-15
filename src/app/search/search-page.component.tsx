@@ -2,13 +2,19 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Residence } from '../../model/entities';
 import { ResidencesListComponent } from '../../components/mol.residences-list/residences-list.component';
+import { SearchForm } from '../../components/org.search-form';
 
-export const SearchForm = () => {
+
+
+export const SearchPage = () => {
   return (
-    // form
-
-    null &&
-      <ResidencesListComponent residences={datasourceResidences} />
+    <>
+      <SearchForm />
+      {
+        null &&
+          <ResidencesListComponent residences={datasourceResidences} />
+      }
+    </>
   );
 };
 
