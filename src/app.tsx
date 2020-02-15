@@ -1,12 +1,12 @@
 import React from 'react';
 import { Dashboard } from './app/dashboard/dashboard.component';
-import { MainNavigator } from './app/navigators/main-navigator';
+import { PageTitle } from './components/mol.page_title';
 
 export class TravelSimpleApp extends React.Component {
 	render() {
 		return (
 			<>
-				<MainNavigator />
+				<PageTitle />
 				<Dashboard />
 			</>
 		);

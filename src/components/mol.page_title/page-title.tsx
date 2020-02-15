@@ -1,20 +1,20 @@
 import React from 'react';
 import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
-import { H1 } from '../../components';
+import { H1 } from '..';
 import { Strings } from '../../resources/strings';
-import { MainNavigatorStyled } from './main-navigator.style';
+import { PageTitleStyled } from './page-title.style';
 
-export class MainNavigator extends React.Component {
+export class PageTitle extends React.Component {
 	render() {
 		return (
-			<MainNavigatorStyled>
+			<PageTitleStyled>
         <Row>
           <Col md={{ offset: 5 }}>
             <H1>{Strings.AppName}</H1>
           </Col>
         </Row>
-			</MainNavigatorStyled>
+			</PageTitleStyled>
 		);
 	}
 }
