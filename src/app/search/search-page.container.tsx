@@ -84,4 +84,20 @@ const datasourceResidences: Residence[] = [
     city: "São Paulo",
     availablePlaces: 2,
   },
+  {
+    id: 7,
+    hotel: "Hotel Leão da Montanha",
+    address: "Rua Dr. Raul Mesquita, 443",
+    bedroomName: "Quarto Duplo King",
+    city: "São Paulo",
+    availablePlaces: 2,
+  },
+  {
+    id: 8,
+    hotel: "Hotel Leão da Montanha",
+    address: "Rua Dr. Raul Mesquita, 443",
+    bedroomName: "Quarto Triplo",
+    city: "São Paulo",
+    availablePlaces: 2,
+  },
 ];
