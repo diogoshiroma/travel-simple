@@ -5,4 +5,5 @@ export interface Residence {
   bedroomName: string;
   city: string;
   availablePlaces: number;
+  busyDays: Date[];
 }

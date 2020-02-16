@@ -13,6 +13,7 @@ export const datasourceResidences: Residence[] = [
     bedroomName: "Quarto Duplo Standard",
     city: "Campos do Jordão",
     availablePlaces: 2,
+    busyDays: [new Date('2020-02-17'), new Date('2020-02-18'), new Date('2020-02-19'), new Date('2020-02-20')],
   },
   {
     id: 2,
@@ -21,6 +22,7 @@ export const datasourceResidences: Residence[] = [
     bedroomName: "Quarto Duplo Superior",
     city: "Campos do Jordão",
     availablePlaces: 2,
+    busyDays: [new Date('2020-02-21'), new Date('2020-02-22'), new Date('2020-02-27'), new Date('2020-02-28')],
   },
   {
     id: 3,
@@ -29,6 +31,7 @@ export const datasourceResidences: Residence[] = [
     bedroomName: "Quarto Duplo Standard",
     city: "Campos do Jordão",
     availablePlaces: 2,
+    busyDays: [new Date('2020-02-23'), new Date('2020-02-24')],
   },
   {
     id: 4,
@@ -37,6 +40,7 @@ export const datasourceResidences: Residence[] = [
     bedroomName: "Quarto Duplo Standard",
     city: "São Paulo",
     availablePlaces: 2,
+    busyDays: [new Date('2020-02-25'), new Date('2020-02-26')],
   },
   {
     id: 5,
@@ -45,6 +49,7 @@ export const datasourceResidences: Residence[] = [
     bedroomName: "Quarto Duplo Superior",
     city: "São Paulo",
     availablePlaces: 2,
+    busyDays: [new Date('2020-02-19'), new Date('2020-02-20')],
   },
   {
     id: 6,
@@ -53,6 +58,7 @@ export const datasourceResidences: Residence[] = [
     bedroomName: "Quarto Duplo Standard",
     city: "São Paulo",
     availablePlaces: 2,
+    busyDays: [new Date('2020-02-19'), new Date('2020-02-20')],
   },
   {
     id: 7,
@@ -61,6 +67,7 @@ export const datasourceResidences: Residence[] = [
     bedroomName: "Quarto Duplo King",
     city: "São Paulo",
     availablePlaces: 2,
+    busyDays: [new Date('2020-02-23'), new Date('2020-02-24')],
   },
   {
     id: 8,
@@ -69,5 +76,6 @@ export const datasourceResidences: Residence[] = [
     bedroomName: "Quarto Triplo",
     city: "São Paulo",
     availablePlaces: 2,
+    busyDays: [new Date('2020-02-25'), new Date('2020-02-26')],
   },
 ];
