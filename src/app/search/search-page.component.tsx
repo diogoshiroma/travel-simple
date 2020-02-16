@@ -6,6 +6,7 @@ import { SearchForm } from '../../components/org.search-form';
 import { VSeparator } from '../../components/atm.separators';
 import { ErrorMessage } from '../../components/typography.style';
 import { Strings } from '../../resources';
+import { PageTitle } from '../../components/mol.page-title';
 
 interface SearchPageInterface {
   onChangeCity: (event: any) => void;
@@ -26,6 +27,7 @@ export const SearchPage = (props: SearchPageInterface) => {
 
   return (
     <>
+      <PageTitle showButton={false} />
       <VSeparator />
       <SearchForm
         onChangeCity={props.onChangeCity}

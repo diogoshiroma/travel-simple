@@ -1,5 +1,10 @@
 import { Residence } from "../../model/entities";
 
+export const getResidenceById = (id: number): Residence | null  => {
+  const residences = datasourceResidences.filter(res => res.id === id);
+  return residences.length > 0 ? residences[0] : null;
+}
+
 export const datasourceResidences: Residence[] = [
   {
     id: 1,

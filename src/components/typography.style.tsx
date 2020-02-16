@@ -2,6 +2,11 @@ import styled from "styled-components";
 import { FontSize, DefaultColor, Color } from "../resources";
 
 export const H1 = styled.h1`
+  font-size: ${FontSize.XLarge};
+  color: ${DefaultColor.Black};
+`;
+
+export const H2 = styled.h2`
   font-size: ${FontSize.Large};
   color: ${DefaultColor.Black};
 `;
