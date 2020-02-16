@@ -15,13 +15,17 @@ interface SearchPageInterface {
   onSubmit: () => Residence[];
   onBlurCheckinDate: () => void;
   onBlurCheckoutDate: () => void;
+  onBlurCity: () => void;
   disabled: boolean;
   checkinInvalidDateFormat: boolean;
   checkinNonExistingDate: boolean;
   checkoutInvalidDateFormat: boolean;
   checkoutNonExistingDate: boolean;
+  checkinAfterCheckout: boolean;
+  emptyCity: boolean;
   dirtyCheckin: boolean;
   dirtyCheckout: boolean;
+  dirtyCity: boolean;
 }
 
 export const SearchPage = (props: SearchPageInterface) => {
@@ -45,13 +49,17 @@ export const SearchPage = (props: SearchPageInterface) => {
         onSubmit={handleSubmit}
         onBlurCheckinDate={props.onBlurCheckinDate}
         onBlurCheckoutDate={props.onBlurCheckoutDate}
+        onBlurCity={props.onBlurCity}
         disabled={props.disabled}
         checkinInvalidDateFormat={props.checkinInvalidDateFormat}
         checkinNonExistingDate={props.checkinNonExistingDate}
         checkoutInvalidDateFormat={props.checkoutInvalidDateFormat}
         checkoutNonExistingDate={props.checkoutNonExistingDate}
+        checkinAfterCheckout={props.checkinAfterCheckout}
+        emptyCity={props.emptyCity}
         dirtyCheckin={props.dirtyCheckin}
         dirtyCheckout={props.dirtyCheckout}
+        dirtyCity={props.dirtyCity}
       />
       {
         resList.length > 0 ?

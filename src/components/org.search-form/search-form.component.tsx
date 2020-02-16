@@ -15,14 +15,18 @@ interface SearchFormInterface {
   onChangeCheckoutDate: (event: any) => void;
   onBlurCheckinDate: () => void;
   onBlurCheckoutDate: () => void;
+  onBlurCity: () => void;
   onSubmit: () => void;
   disabled: boolean;
   checkinInvalidDateFormat: boolean;
   checkinNonExistingDate: boolean;
   checkoutInvalidDateFormat: boolean;
   checkoutNonExistingDate: boolean;
+  checkinAfterCheckout: boolean;
+  emptyCity: boolean;
   dirtyCheckin: boolean;
   dirtyCheckout: boolean;
+  dirtyCity: boolean;
 }
 
 export const SearchForm = (props: SearchFormInterface) => {
@@ -37,7 +41,13 @@ export const SearchForm = (props: SearchFormInterface) => {
                 type="input"
                 placeholder={Strings.Components.ResidencesForm.Placeholder.City}
                 onChange={props.onChangeCity}
+                onBlur={props.onBlurCity}
               />
+              {props.emptyCity && props.dirtyCity &&
+                <FieldErrorMessage>
+                  {Strings.Error.ResidencesForm.EmptyCity}
+                </FieldErrorMessage>
+              }
             </Form.Group>
           </Col>
         </Row>
@@ -63,6 +73,11 @@ export const SearchForm = (props: SearchFormInterface) => {
               {props.checkinNonExistingDate && props.dirtyCheckin &&
                 <FieldErrorMessage>
                   {Strings.Error.ResidencesForm.NonExistingDate}
+                </FieldErrorMessage>
+              }
+              {props.checkinAfterCheckout &&
+                <FieldErrorMessage>
+                  {Strings.Error.ResidencesForm.CheckingAfterCheckout}
                 </FieldErrorMessage>
               }
             </Form.Group>

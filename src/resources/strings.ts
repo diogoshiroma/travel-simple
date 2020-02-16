@@ -31,6 +31,8 @@ export let Strings = {
     ResidencesForm: {
       InvalidDateFormat: "Formato de data incorreto",
       NonExistingDate: "Data não existente",
+      EmptyCity: "Digite o nome da cidade",
+      CheckingAfterCheckout: "A data de entrada deve ser anterior à data de saída",
     }
   },
 };
