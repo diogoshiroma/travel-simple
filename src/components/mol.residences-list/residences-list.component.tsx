@@ -19,10 +19,7 @@ export const ResidencesListComponent = (props: ResidencesListProps) => {
             const key: string = "" + index;
             return (
               <Col md={12 / RESIDENCES_PER_ROW} key={key}>
-                <ResidenceCard
-                  residence={res}
-                  onClick={() => alert(res.bedroomName)}
-                />
+                <ResidenceCard residence={res} />
               </Col>
             );
           })
