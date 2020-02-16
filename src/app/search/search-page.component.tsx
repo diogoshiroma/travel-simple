@@ -16,10 +16,12 @@ interface SearchPageInterface {
 
 export const SearchPage = (props: SearchPageInterface) => {
   const [resList, setResList] = React.useState<Residence[]>([]);
+  const [dirtyForm, setDirtyForm] = React.useState(false);
   
   const handleSubmit = () => {
     const list = props.matchResidences();
     setResList(list);
+    setDirtyForm(true);
   };
 
   return (
@@ -35,10 +37,12 @@ export const SearchPage = (props: SearchPageInterface) => {
         resList.length > 0 ?
           <ResidencesListComponent residences={resList} />
         :
-          <>
-            <VSeparator />
-            <ErrorMessage>{Strings.Components.ResidencesForm.NoResFound}</ErrorMessage>
-          </>
+          dirtyForm && (
+            <>
+              <VSeparator />
+              <ErrorMessage>{Strings.Components.ResidencesForm.NoResFound}</ErrorMessage>
+            </>
+          )
       }
     </>
   );
