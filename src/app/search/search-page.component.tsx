@@ -12,7 +12,16 @@ interface SearchPageInterface {
   onChangeCity: (event: any) => void;
   onChangeCheckinDate: (event: any) => void;
   onChangeCheckoutDate: (event: any) => void;
-  matchResidences: () => Residence[];
+  onSubmit: () => Residence[];
+  onBlurCheckinDate: () => void;
+  onBlurCheckoutDate: () => void;
+  disabled: boolean;
+  checkinInvalidDateFormat: boolean;
+  checkinNonExistingDate: boolean;
+  checkoutInvalidDateFormat: boolean;
+  checkoutNonExistingDate: boolean;
+  dirtyCheckin: boolean;
+  dirtyCheckout: boolean;
 }
 
 export const SearchPage = (props: SearchPageInterface) => {
@@ -20,7 +29,7 @@ export const SearchPage = (props: SearchPageInterface) => {
   const [dirtyForm, setDirtyForm] = React.useState(false);
   
   const handleSubmit = () => {
-    const list = props.matchResidences();
+    const list = props.onSubmit();
     setResList(list);
     setDirtyForm(true);
   };
@@ -34,6 +43,15 @@ export const SearchPage = (props: SearchPageInterface) => {
         onChangeCheckinDate={props.onChangeCheckinDate}
         onChangeCheckoutDate={props.onChangeCheckoutDate}
         onSubmit={handleSubmit}
+        onBlurCheckinDate={props.onBlurCheckinDate}
+        onBlurCheckoutDate={props.onBlurCheckoutDate}
+        disabled={props.disabled}
+        checkinInvalidDateFormat={props.checkinInvalidDateFormat}
+        checkinNonExistingDate={props.checkinNonExistingDate}
+        checkoutInvalidDateFormat={props.checkoutInvalidDateFormat}
+        checkoutNonExistingDate={props.checkoutNonExistingDate}
+        dirtyCheckin={props.dirtyCheckin}
+        dirtyCheckout={props.dirtyCheckout}
       />
       {
         resList.length > 0 ?

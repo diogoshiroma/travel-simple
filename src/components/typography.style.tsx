@@ -16,9 +16,15 @@ export const H3 = styled.h3`
   color: ${DefaultColor.Black};
 `;
 
-export const ErrorMessage = styled.body`
+export const ErrorMessage = styled.div`
   font-size: ${FontSize.XLarge};
   font-weight: bold;
   color: ${Color.Alert};
   text-align: center;
+`;
+
+export const FieldErrorMessage = styled.div`
+  font-size: ${FontSize.Large};
+  font-weight: bold;
+  color: ${Color.Alert};
 `;

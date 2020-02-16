@@ -10,6 +10,7 @@ export let Strings = {
       CheckoutDate: "Data de saída",
       Submit: "Buscar quartos!",
       NoResFound: "Nenhum quarto encontrado! :-(",
+      DateFormat: "Formato: (DD/MM/AAAA)",
       Placeholder: {
         City: "Informe a cidade de destino",
         CheckinDate: "Informe a data de entrada",
@@ -26,5 +27,10 @@ export let Strings = {
   Pages: {
     NotFound: 'Esta página não existe :-(',
   },
-  Error: { },
+  Error: { 
+    ResidencesForm: {
+      InvalidDateFormat: "Formato de data incorreto",
+      NonExistingDate: "Data não existente",
+    }
+  },
 };
