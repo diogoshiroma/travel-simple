@@ -6,6 +6,7 @@ import { SearchForm } from '../../components/org.search-form';
 import { VSeparator } from '../../components/atm.separators';
 import { ErrorMessage } from '../../components/typography.style';
 import { Strings } from '../../resources';
+import { PageTitle } from '../../components/mol.page-title';
 
 interface SearchPageInterface {
   onChangeCity: (event: any) => void;
@@ -16,14 +17,17 @@ interface SearchPageInterface {
 
 export const SearchPage = (props: SearchPageInterface) => {
   const [resList, setResList] = React.useState<Residence[]>([]);
+  const [dirtyForm, setDirtyForm] = React.useState(false);
   
   const handleSubmit = () => {
     const list = props.matchResidences();
     setResList(list);
+    setDirtyForm(true);
   };
 
   return (
     <>
+      <PageTitle showButton={false} />
       <VSeparator />
       <SearchForm
         onChangeCity={props.onChangeCity}
@@ -35,10 +39,12 @@ export const SearchPage = (props: SearchPageInterface) => {
         resList.length > 0 ?
           <ResidencesListComponent residences={resList} />
         :
-          <>
-            <VSeparator />
-            <ErrorMessage>{Strings.Components.ResidencesForm.NoResFound}</ErrorMessage>
-          </>
+          dirtyForm && (
+            <>
+              <VSeparator />
+              <ErrorMessage>{Strings.Components.ResidencesForm.NoResFound}</ErrorMessage>
+            </>
+          )
       }
     </>
   );
