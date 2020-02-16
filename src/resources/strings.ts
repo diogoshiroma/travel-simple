@@ -23,6 +23,8 @@ export let Strings = {
       NoResFound: "Nenhum quarto encontrado! :-(",
     },
   },
-  Pages: { },
+  Pages: {
+    NotFound: 'Esta pagina não existe :-(',
+  },
   Error: { },
 };
