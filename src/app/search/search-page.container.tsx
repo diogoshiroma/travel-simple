@@ -60,16 +60,6 @@ export const SearchPageContainer = () => {
     return checkinDate.getTime() >= checkoutDate.getTime();
   };
 
-  const containsBusyDay = (residence: Residence, checkinDate: Date, checkoutDate: Date): boolean => {
-    residence.busyDays.forEach(busyDate => {
-      if (busyDate.getTime() >= checkinDate.getTime() &&
-          busyDate.getTime() <= checkoutDate.getTime()) {
-        return false;
-      }
-    });
-    return true;
-  };
-
   const disableButton = (): boolean => {
     return (
       city === '' ||
@@ -79,20 +69,28 @@ export const SearchPageContainer = () => {
       checkoutNonExistingDate ||
       isCheckinAfterCheckout(parseDate(checkinDateText), parseDate(checkoutDateText))
     );
-  }
+  };
+
+  const containsBusyDay = (residence: Residence, checkinDate: Date, checkoutDate: Date): boolean => {
+    let hasBusyDays = false;
+    residence.busyDays.forEach(busyDate => {
+      if (busyDate.getTime() >= checkinDate.getTime() &&
+          busyDate.getTime() <= checkoutDate.getTime()) {
+        hasBusyDays = true;
+        return;
+      }
+    });
+    return hasBusyDays;
+  };
 
   const matchResidences = (): Residence[] => {
     const checkinDate = parseDate(checkinDateText);
     const checkoutDate = parseDate(checkoutDateText);
 
-    if (checkinDate == null || checkoutDate == null) {
-      
-    }
-
     return datasourceResidences.filter(
-      residence => residence.city == city
+      residence => residence.city == city && !containsBusyDay(residence, checkinDate, checkoutDate)
     );
-  }
+  };
 
   return (
     <SearchPage
