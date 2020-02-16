@@ -24,7 +24,7 @@ export let Strings = {
     },
   },
   Pages: {
-    NotFound: 'Esta pagina não existe :-(',
+    NotFound: 'Esta página não existe :-(',
   },
   Error: { },
 };
