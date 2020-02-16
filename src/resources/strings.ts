@@ -2,7 +2,7 @@ export let Strings = {
   AppName: 'Travel Simple',
   Components: {
     Residence: {
-      AvailablePlaces: "Locais disponíveis: "
+      AvailablePlaces: "Vagas disponíveis: "
     },
     ResidencesForm: {
       City: "Cidade",
@@ -15,6 +15,12 @@ export let Strings = {
         CheckinDate: "Informe a data de entrada",
         CheckoutDate: "Informe a data de saída",
       },
+    },
+    ResidenceDetail: {
+      AvailablePlacesLbl: 'Vagas disponíveis: ',
+      BookNowYourRoom: 'Reserve agora o seu quarto: ',
+      BuyRoom: 'Comprar',
+      NoResFound: "Nenhum quarto encontrado! :-(",
     },
   },
   Pages: { },
