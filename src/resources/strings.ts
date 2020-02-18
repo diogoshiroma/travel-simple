@@ -9,7 +9,6 @@ export let Strings = {
       CheckinDate: "Data de entrada",
       CheckoutDate: "Data de saída",
       Submit: "Buscar quartos!",
-      NoResFound: "Nenhum quarto encontrado! :-(",
       DateFormat: "Formato: (DD/MM/AAAA)",
       Placeholder: {
         City: "Informe a cidade de destino",
@@ -21,7 +20,6 @@ export let Strings = {
       AvailablePlacesLbl: 'Vagas disponíveis: ',
       BookNowYourRoom: 'Reserve agora o seu quarto: ',
       BuyRoom: 'Comprar',
-      NoResFound: "Nenhum quarto encontrado! :-(",
     },
   },
   Pages: {
@@ -33,6 +31,10 @@ export let Strings = {
       NonExistingDate: "Data não existente",
       EmptyCity: "Digite o nome da cidade",
       CheckingAfterCheckout: "A data de entrada deve ser anterior à data de saída",
-    }
+      NoResFound: "Nenhum quarto encontrado! :-(",
+    },
+    ResidenceDetail: {
+      NoResFound: "Nenhum quarto encontrado! :-(",
+    },
   },
 };

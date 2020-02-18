@@ -68,7 +68,7 @@ export const SearchPage = (props: SearchPageInterface) => {
           dirtyForm && (
             <>
               <VSeparator />
-              <ErrorMessage>{Strings.Components.ResidencesForm.NoResFound}</ErrorMessage>
+              <ErrorMessage>{Strings.Error.ResidencesForm.NoResFound}</ErrorMessage>
             </>
           )
       }

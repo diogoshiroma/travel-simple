@@ -56,7 +56,7 @@ export const RoomDetails = (props: RoomDetailsProps) => {
         <PageTitle showButton={true} />
         <VSeparator />
         <Row noGutters={true}>
-          <ErrorMessage>{Strings.Components.ResidenceDetail.NoResFound}</ErrorMessage>
+          <ErrorMessage>{Strings.Error.ResidenceDetail.NoResFound}</ErrorMessage>
         </Row>
       </>
   );
