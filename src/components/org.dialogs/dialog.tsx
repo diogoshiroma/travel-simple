@@ -1,33 +1,31 @@
 import React from 'react';
-import { Residence } from '../../model';
 import Modal from 'react-bootstrap/Modal';
 import { Strings } from '../../resources';
 import Button from 'react-bootstrap/Button';
 
 interface DialogProps {
   show: boolean;
-  residence: Residence;
-  onCancelClick: () => void;
-  onAcceptClick: () => void;
+  title: string;
+  message: string;
+  btnCancelLbl?: string;
+  btnConfirmLbl: string;
+  onCancelClick?: () => void;
+  onConfirmClick: () => void;
+  onHideClick: () => void;
 }
 
 export const Dialog = (props: DialogProps) => {
-  const getModalTitle = () => {
-    return `${Strings.Components.Dialog.Title} ${props.residence.bedroomName} (${props.residence.hotel})`;
-  };
-
   return (
-    <Modal show={props.show}>
+    <Modal show={props.show} onHide={props.onHideClick}>
       <Modal.Header closeButton>
-        <Modal.Title>{getModalTitle()}</Modal.Title>
+      <Modal.Title>{props.title}</Modal.Title>
       </Modal.Header>
+      <Modal.Body>{props.message}</Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={props.onCancelClick}>
-          {Strings.Components.Dialog.Cancel}
-        </Button>
-        <Button variant="primary" onClick={props.onAcceptClick}>
-          {Strings.Components.Dialog.Accept}
-        </Button>
+        {!!props.onCancelClick &&
+          <Button variant="secondary" onClick={props.onCancelClick}>{props.btnCancelLbl}</Button>
+        }
+        <Button variant="primary" onClick={props.onConfirmClick}>{props.btnConfirmLbl}</Button>
       </Modal.Footer>
     </Modal>
   );

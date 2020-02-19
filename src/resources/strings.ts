@@ -22,9 +22,17 @@ export let Strings = {
       BuyRoom: 'Comprar',
     },
     Dialog: {
-      Title: 'Confirma compra de ',
-      Cancel: 'Cancelar',
-      Accept: 'Confirmar',
+      Confirmation: {
+        Title: 'Confirmação',
+        MessagePrefix: 'Confirmar compra de ',
+        Cancel: 'Cancelar',
+        Confirm: 'Confirmar',
+      },
+      Done: {
+        Title: 'Confirmação',
+        Message: 'Compra efetuada com sucesso!',
+        Confirm: 'OK',
+      },
     },
   },
   Pages: {

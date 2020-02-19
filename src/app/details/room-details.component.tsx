@@ -3,20 +3,34 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import { HotelIcon, Strings } from '../../resources';
-import { H2, H3, VSeparator, H1, PageTitle, ErrorMessage } from '../../components';
+import { H2, H3, VSeparator, H1, PageTitle, ErrorMessage, Dialog } from '../../components';
 import Button from 'react-bootstrap/Button';
 import { Residence } from '../../model';
 
 interface RoomDetailsProps {
   residence: Residence | null;
+  showDialogBuyConfirmation: boolean;
+  showDialogBuyDone: boolean;
+  onClickBuy: () => void;
+  onClickBuyConfirm: () => void;
+  onClickBuyCancel: () => void;
+  onClickBuyDone: () => void;
 }
 
 export const RoomDetails = (props: RoomDetailsProps) => {
+  const getDialogBuyConfirmationMessage = () => {
+    if (props.residence) {
+      return `${Strings.Components.Dialog.Confirmation.MessagePrefix} ${props.residence.bedroomName} (${props.residence.hotel})?`;
+    } else {
+      return '';
+    }
+  };
+
   return (
-    !!props.residence ?
-      <>
-        <PageTitle showButton={true} />
-        <VSeparator />
+    <>
+      <PageTitle showButton={true} />
+      <VSeparator />
+      {!!props.residence ?
         <Row>
           <Col sm={6}>
             <Image src={HotelIcon} rounded />
@@ -47,17 +61,32 @@ export const RoomDetails = (props: RoomDetailsProps) => {
 
             <H3>{Strings.Components.ResidenceDetail.BookNowYourRoom}</H3>
             <VSeparator />
-            <Button variant="primary" onClick={() => alert("Comprou!")} block>{Strings.Components.ResidenceDetail.BuyRoom}</Button>
+            <Button variant="primary" onClick={props.onClickBuy} block>{Strings.Components.ResidenceDetail.BuyRoom}</Button>
           </Col>
+          <Dialog
+            show={props.showDialogBuyConfirmation}
+            title={Strings.Components.Dialog.Confirmation.Title}
+            message={getDialogBuyConfirmationMessage()}
+            btnCancelLbl={Strings.Components.Dialog.Confirmation.Cancel}
+            btnConfirmLbl={Strings.Components.Dialog.Confirmation.Confirm}
+            onConfirmClick={props.onClickBuyConfirm}
+            onCancelClick={props.onClickBuyCancel}
+            onHideClick={props.onClickBuyCancel}
+          />
+          <Dialog
+            show={props.showDialogBuyDone}
+            title={Strings.Components.Dialog.Done.Title}
+            message={Strings.Components.Dialog.Done.Message}
+            btnConfirmLbl={Strings.Components.Dialog.Done.Confirm}
+            onConfirmClick={props.onClickBuyDone}
+            onHideClick={props.onClickBuyDone}
+          />
         </Row>
-      </>
-    :
-      <>
-        <PageTitle showButton={true} />
-        <VSeparator />
+      :
         <Row noGutters={true}>
           <ErrorMessage>{Strings.Error.ResidenceDetail.NoResFound}</ErrorMessage>
         </Row>
-      </>
+      }
+    </>
   );
 };

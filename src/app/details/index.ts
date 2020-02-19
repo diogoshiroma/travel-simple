@@ -1,2 +1,2 @@
 export * from './room-details.component';
-export * from './room-details.container';
+export * from './room-details.page';

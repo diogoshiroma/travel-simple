@@ -1,24 +1,41 @@
 import React from 'react';
-import queryString from 'query-string'
-import { RouteComponentProps } from 'react-router-dom';
-import { getResidenceById } from '../data';
 import { Residence } from '../../model';
 import { RoomDetails } from './room-details.component';
 
-export class RoomDetailsContainer extends React.Component<RouteComponentProps> {
-  render() {
-    const values = queryString.parse(this.props.location.search);
-    const roomId = values.room;
-    let residence: Residence | null;
+interface RoomDetailsContainerProps {
+  residence: Residence | null;
+}
 
-    if (roomId && typeof roomId != "object") {
-      residence = getResidenceById(parseInt(roomId));
-    } else {
-      residence = null;
-    }
+export const RoomDetailsContainer = (props: RoomDetailsContainerProps) => {
+  const [showDialogBuyConfirmation, setShowDialogBuyConfirmation] = React.useState(false);
+  const [showDialogBuyDone, setShowDialogBuyDone] = React.useState(false);
 
-    return (
-      <RoomDetails residence={residence} />
-    );
-  }
+  const handleClickBuy = () => {
+    setShowDialogBuyConfirmation(true);
+  };
+
+  const handleClickBuyConfirm = () => {
+    setShowDialogBuyConfirmation(false);
+    setShowDialogBuyDone(true);
+  };
+
+  const handleClickBuyCancel = () => {
+    setShowDialogBuyConfirmation(false);
+  };
+
+  const handleClickBuyDone = () => {
+    setShowDialogBuyDone(false);
+  };
+
+  return (
+    <RoomDetails
+      residence={props.residence}
+      showDialogBuyConfirmation={showDialogBuyConfirmation}
+      showDialogBuyDone={showDialogBuyDone}
+      onClickBuy={handleClickBuy}
+      onClickBuyConfirm={handleClickBuyConfirm}
+      onClickBuyCancel={handleClickBuyCancel}
+      onClickBuyDone={handleClickBuyDone}
+    />
+  )
 }
