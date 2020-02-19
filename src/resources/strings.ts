@@ -21,6 +21,11 @@ export let Strings = {
       BookNowYourRoom: 'Reserve agora o seu quarto: ',
       BuyRoom: 'Comprar',
     },
+    Dialog: {
+      Title: 'Confirma compra de ',
+      Cancel: 'Cancelar',
+      Accept: 'Confirmar',
+    },
   },
   Pages: {
     NotFound: 'Esta página não existe :-(',
