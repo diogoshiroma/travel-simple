@@ -11,7 +11,7 @@ export class RoomDetailsPage extends React.Component<RouteComponentProps> {
     const roomId = values.room;
     let residence: Residence | null;
 
-    if (roomId && typeof roomId != "object") {
+    if (roomId && typeof roomId != 'object') {
       residence = getResidenceById(parseInt(roomId));
     } else {
       residence = null;
