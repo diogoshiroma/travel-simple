@@ -6,6 +6,7 @@ import { parseDate, matchShortDate, isValidDate } from '../../model';
 
 export const SearchPageContainer = () => {
   const [availableResList, setAvailableResList] = React.useState<Residence[]>([]);
+  const [purchasedResList, setPurchasedResList] = React.useState<Residence[]>([]);
 
   const [city, setCity] = React.useState('');
   const [checkinDateText, setCheckinDateText] = React.useState('');
@@ -19,6 +20,11 @@ export const SearchPageContainer = () => {
   const [dirtyCheckin, setDirtyCheckin] = React.useState(false);
   const [dirtyCheckout, setDirtyCheckout] = React.useState(false);
   const [dirtyCity, setDirtyCity] = React.useState(false);
+
+  React.useEffect(() => {
+    const list = filterPurchasedResidences();
+    setPurchasedResList(list);
+  });
   
   const handleChangeCity = (event: any) => {
     setCity(event.target.value);
@@ -99,6 +105,10 @@ export const SearchPageContainer = () => {
     );
   };
 
+  const filterPurchasedResidences = (): Residence[] => {
+    return datasourceResidences.filter(residence => residence.purchased);
+  };
+
   return (
     <SearchPage
       onChangeCity={handleChangeCity}
@@ -109,6 +119,7 @@ export const SearchPageContainer = () => {
       onBlurCheckoutDate={handleBlurCheckoutDate}
       onBlurCity={handleBlurCity}
       availableResidences={availableResList}
+      purchasedResidences={purchasedResList}
       disabled={disableButton()}
       checkinInvalidDateFormat={checkinInvalidDateFormat}
       checkinNonExistingDate={checkinNonExistingDate}

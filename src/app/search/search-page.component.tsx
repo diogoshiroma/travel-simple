@@ -4,7 +4,7 @@ import { Residence } from '../../model/entities';
 import { ResidencesListComponent } from '../../components/mol.residences-list/residences-list.component';
 import { SearchForm } from '../../components/org.search-form';
 import { VSeparator } from '../../components/atm.separators';
-import { ErrorMessage } from '../../components/typography.style';
+import { ErrorMessage, H2 } from '../../components/typography.style';
 import { Strings } from '../../resources';
 import { PageTitle } from '../../components/mol.page-title';
 
@@ -17,6 +17,7 @@ interface SearchPageInterface {
   onBlurCheckoutDate: () => void;
   onBlurCity: () => void;
   availableResidences: Residence[];
+  purchasedResidences: Residence[];
   disabled: boolean;
   checkinInvalidDateFormat: boolean;
   checkinNonExistingDate: boolean;
@@ -60,8 +61,7 @@ export const SearchPage = (props: SearchPageInterface) => {
         dirtyCheckout={props.dirtyCheckout}
         dirtyCity={props.dirtyCity}
       />
-      {
-        props.availableResidences.length > 0 ?
+      {props.availableResidences.length > 0 ?
           <ResidencesListComponent residences={props.availableResidences} />
         :
           dirtyForm && (
@@ -71,7 +71,13 @@ export const SearchPage = (props: SearchPageInterface) => {
             </>
           )
       }
-
+      {props.purchasedResidences.length > 0 &&
+        <>
+          <VSeparator />
+          <H2>{Strings.Components.ResidencesForm.PurchasedResidences}</H2>
+          <ResidencesListComponent residences={props.purchasedResidences} />
+        </>
+      }
     </>
   );
 };

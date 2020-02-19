@@ -10,6 +10,7 @@ export let Strings = {
       CheckoutDate: "Data de saída",
       Submit: "Buscar quartos!",
       DateFormat: "Formato: (DD/MM/AAAA)",
+      PurchasedResidences: "Hospedagens compradas: ",
       Placeholder: {
         City: "Informe a cidade de destino",
         CheckinDate: "Informe a data de entrada",
