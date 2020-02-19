@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import { HotelIcon, Strings } from '../../resources';
-import { H2, H3, VSeparator, H1, PageTitle, ErrorMessage, Dialog } from '../../components';
+import { H2, H3, VSeparator, H1, PageTitle, ErrorMessage, Dialog, Greeting } from '../../components';
 import Button from 'react-bootstrap/Button';
 import { Residence } from '../../model';
 
@@ -59,9 +59,23 @@ export const RoomDetails = (props: RoomDetailsProps) => {
             <VSeparator />
             <VSeparator />
 
-            <H3>{Strings.Components.ResidenceDetail.BookNowYourRoom}</H3>
-            <VSeparator />
-            <Button variant="primary" onClick={props.onClickBuy} block>{Strings.Components.ResidenceDetail.BuyRoom}</Button>
+            {!props.residence.purchased ?
+              <>
+                <H3>{Strings.Components.ResidenceDetail.BookNowYourRoom}</H3>
+                <VSeparator />
+                <Button variant="primary" onClick={props.onClickBuy} block>{Strings.Components.ResidenceDetail.BuyRoom}</Button>
+              </>
+            :
+              <>
+                <Greeting>{Strings.Components.ResidenceDetail.Thanks}</Greeting>
+                <VSeparator />
+                <H3>{Strings.Components.ResidenceDetail.AddToTour}</H3>
+                <VSeparator />
+                <Button variant="info" onClick={() => alert('Adicionado ao roteiro com sucesso!')} block>
+                  {Strings.Components.ResidenceDetail.AddToTourBtn}
+                </Button>
+              </>
+            }
           </Col>
           <Dialog
             show={props.showDialogBuyConfirmation}

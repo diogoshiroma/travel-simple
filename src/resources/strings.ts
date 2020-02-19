@@ -20,6 +20,9 @@ export let Strings = {
       AvailablePlacesLbl: 'Vagas disponíveis: ',
       BookNowYourRoom: 'Reserve agora o seu quarto: ',
       BuyRoom: 'Comprar',
+      Thanks: 'Obrigado!',
+      AddToTour: 'Deseja adicionar essa hospedagem ao roteiro?',
+      AddToTourBtn: 'Adicionar ao roteiro.',
     },
     Dialog: {
       Confirmation: {
