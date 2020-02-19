@@ -1,5 +1,5 @@
 import React from 'react';
-import { Residence } from '../../model';
+import { Residence, setResidenceAsPurchased } from '../../model';
 import { RoomDetails } from './room-details.component';
 
 interface RoomDetailsContainerProps {
@@ -15,6 +15,9 @@ export const RoomDetailsContainer = (props: RoomDetailsContainerProps) => {
   };
 
   const handleClickBuyConfirm = () => {
+    if (props.residence) {
+      setResidenceAsPurchased(props.residence);
+    }
     setShowDialogBuyConfirmation(false);
     setShowDialogBuyDone(true);
   };

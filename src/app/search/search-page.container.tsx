@@ -88,7 +88,7 @@ export const SearchPageContainer = () => {
     const checkoutDate = parseDate(checkoutDateText);
 
     return datasourceResidences.filter(
-      residence => residence.city == city && !containsBusyDay(residence, checkinDate, checkoutDate)
+      residence => residence.availablePlaces > 0 && residence.city == city && !containsBusyDay(residence, checkinDate, checkoutDate)
     );
   };
 
