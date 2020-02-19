@@ -7,6 +7,7 @@ import { parseDate, matchShortDate, isValidDate } from '../../model';
 export const SearchPageContainer = () => {
   const [availableResList, setAvailableResList] = React.useState<Residence[]>([]);
   const [purchasedResList, setPurchasedResList] = React.useState<Residence[]>([]);
+  const [showPurchasedList, setShowPurchasedList] = React.useState(true);
 
   const [city, setCity] = React.useState('');
   const [checkinDateText, setCheckinDateText] = React.useState('');
@@ -21,10 +22,13 @@ export const SearchPageContainer = () => {
   const [dirtyCheckout, setDirtyCheckout] = React.useState(false);
   const [dirtyCity, setDirtyCity] = React.useState(false);
 
-  React.useEffect(() => {
-    const list = filterPurchasedResidences();
-    setPurchasedResList(list);
-  });
+    React.useEffect(() => {
+      const list = filterPurchasedResidences();
+      if (showPurchasedList) {
+        setPurchasedResList(list);
+        setShowPurchasedList(false);
+      }
+    });
   
   const handleChangeCity = (event: any) => {
     setCity(event.target.value);
