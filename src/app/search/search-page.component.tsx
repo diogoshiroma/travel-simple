@@ -4,7 +4,7 @@ import { Residence } from '../../model/entities';
 import { ResidencesListComponent } from '../../components/mol.residences-list/residences-list.component';
 import { SearchForm } from '../../components/org.search-form';
 import { VSeparator } from '../../components/atm.separators';
-import { ErrorMessage } from '../../components/typography.style';
+import { ErrorMessage, H2 } from '../../components/typography.style';
 import { Strings } from '../../resources';
 import { PageTitle } from '../../components/mol.page-title';
 
@@ -12,10 +12,12 @@ interface SearchPageInterface {
   onChangeCity: (event: any) => void;
   onChangeCheckinDate: (event: any) => void;
   onChangeCheckoutDate: (event: any) => void;
-  onSubmit: () => Residence[];
+  onSubmit: () => void;
   onBlurCheckinDate: () => void;
   onBlurCheckoutDate: () => void;
   onBlurCity: () => void;
+  availableResidences: Residence[];
+  purchasedResidences: Residence[];
   disabled: boolean;
   checkinInvalidDateFormat: boolean;
   checkinNonExistingDate: boolean;
@@ -29,12 +31,10 @@ interface SearchPageInterface {
 }
 
 export const SearchPage = (props: SearchPageInterface) => {
-  const [resList, setResList] = React.useState<Residence[]>([]);
   const [dirtyForm, setDirtyForm] = React.useState(false);
   
   const handleSubmit = () => {
-    const list = props.onSubmit();
-    setResList(list);
+    props.onSubmit();
     setDirtyForm(true);
   };
 
@@ -61,16 +61,22 @@ export const SearchPage = (props: SearchPageInterface) => {
         dirtyCheckout={props.dirtyCheckout}
         dirtyCity={props.dirtyCity}
       />
-      {
-        resList.length > 0 ?
-          <ResidencesListComponent residences={resList} />
+      {props.availableResidences.length > 0 ?
+          <ResidencesListComponent residences={props.availableResidences} />
         :
           dirtyForm && (
             <>
               <VSeparator />
-              <ErrorMessage>{Strings.Components.ResidencesForm.NoResFound}</ErrorMessage>
+              <ErrorMessage>{Strings.Error.ResidencesForm.NoResFound}</ErrorMessage>
             </>
           )
+      }
+      {props.purchasedResidences.length > 0 &&
+        <>
+          <VSeparator />
+          <H2>{Strings.Components.ResidencesForm.PurchasedResidences}</H2>
+          <ResidencesListComponent residences={props.purchasedResidences} />
+        </>
       }
     </>
   );

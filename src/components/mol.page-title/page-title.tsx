@@ -15,30 +15,28 @@ interface PageTitleProps {
 export const PageTitle = (props: PageTitleProps) => {
 	return (
 		<PageTitleStyled>
-			<Row>
-				{props.showButton ?
-						<>
-							<Col xs={5}>
-								<VSeparator half={true} />
-								<Link to={'/'} style={{textDecoration: "none"}}>
-									<Image
-										src={BackButton}
-										width={30}
-										height={30}
-									/>
-								</Link>
-							</Col>
-							<Col>
-								<H1>{Strings.AppName}</H1>
-							</Col>
-						</>
-					:
-						<Col xs={{offset: 5}}>
+			{props.showButton ?
+					<>
+						<Col xs={5}>
+							<VSeparator half={true} />
+							<Link to={'/'} style={{textDecoration: "none"}}>
+								<Image
+									src={BackButton}
+									width={30}
+									height={30}
+								/>
+							</Link>
+						</Col>
+						<Col>
 							<H1>{Strings.AppName}</H1>
 						</Col>
-				}
-				
-			</Row>
+					</>
+				:
+					<Col xs={{offset: 5}}>
+						<H1>{Strings.AppName}</H1>
+					</Col>
+			}
+			
 		</PageTitleStyled>
 	);
 }

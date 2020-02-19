@@ -16,6 +16,12 @@ export const H3 = styled.h3`
   color: ${DefaultColor.Black};
 `;
 
+export const Greeting = styled.h2`
+  font-size: ${FontSize.Large};
+  font-weight: bold;
+  color: ${DefaultColor.Black};
+`;
+
 export const ErrorMessage = styled.div`
   font-size: ${FontSize.XLarge};
   font-weight: bold;

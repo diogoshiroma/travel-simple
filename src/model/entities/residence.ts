@@ -6,4 +6,5 @@ export interface Residence {
   city: string;
   availablePlaces: number;
   busyDays: Date[];
+  purchased: boolean;
 }

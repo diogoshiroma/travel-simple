@@ -5,7 +5,7 @@ export const getResidenceById = (id: number): Residence | null  => {
   return residences.length > 0 ? residences[0] : null;
 }
 
-export const datasourceResidences: Residence[] = [
+export let datasourceResidences: Residence[] = [
   // Campos do Jordão
   {
     id: 1,
@@ -15,6 +15,7 @@ export const datasourceResidences: Residence[] = [
     city: "Campos do Jordão",
     availablePlaces: 2,
     busyDays: [new Date('2020-02-17'), new Date('2020-02-18'), new Date('2020-02-19'), new Date('2020-02-20')],
+    purchased: false,
   },
   {
     id: 2,
@@ -24,6 +25,7 @@ export const datasourceResidences: Residence[] = [
     city: "Campos do Jordão",
     availablePlaces: 3,
     busyDays: [new Date('2020-02-21'), new Date('2020-02-22'), new Date('2020-02-27'), new Date('2020-02-28')],
+    purchased: false,
   },
   {
     id: 3,
@@ -33,6 +35,7 @@ export const datasourceResidences: Residence[] = [
     city: "Campos do Jordão",
     availablePlaces: 2,
     busyDays: [new Date('2020-02-23'), new Date('2020-02-24')],
+    purchased: false,
   },
   {
     id: 4,
@@ -42,6 +45,7 @@ export const datasourceResidences: Residence[] = [
     city: "Campos do Jordão",
     availablePlaces: 2,
     busyDays: [new Date('2020-02-25'), new Date('2020-02-26')],
+    purchased: false,
   },
 
   // São Paulo
@@ -53,6 +57,7 @@ export const datasourceResidences: Residence[] = [
     city: "São Paulo",
     availablePlaces: 3,
     busyDays: [new Date('2020-02-19'), new Date('2020-02-20')],
+    purchased: false,
   },
   {
     id: 6,
@@ -62,6 +67,7 @@ export const datasourceResidences: Residence[] = [
     city: "São Paulo",
     availablePlaces: 2,
     busyDays: [new Date('2020-02-19'), new Date('2020-02-20')],
+    purchased: false,
   },
   {
     id: 7,
@@ -71,6 +77,7 @@ export const datasourceResidences: Residence[] = [
     city: "São Paulo",
     availablePlaces: 2,
     busyDays: [new Date('2020-02-23'), new Date('2020-02-24')],
+    purchased: false,
   },
   {
     id: 8,
@@ -80,6 +87,7 @@ export const datasourceResidences: Residence[] = [
     city: "São Paulo",
     availablePlaces: 3,
     busyDays: [new Date('2020-02-25'), new Date('2020-02-26')],
+    purchased: false,
   },
   {
     id: 9,
@@ -89,5 +97,6 @@ export const datasourceResidences: Residence[] = [
     city: "São Paulo",
     availablePlaces: 2,
     busyDays: [new Date('2020-02-27'), new Date('2020-02-28'), new Date('2020-02-29')],
+    purchased: false,
   },
 ];

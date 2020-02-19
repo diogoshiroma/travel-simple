@@ -5,6 +5,9 @@ import { datasourceResidences } from '../data';
 import { parseDate, matchShortDate, isValidDate } from '../../model';
 
 export const SearchPageContainer = () => {
+  const [availableResList, setAvailableResList] = React.useState<Residence[]>([]);
+  const [purchasedResList, setPurchasedResList] = React.useState<Residence[]>([]);
+
   const [city, setCity] = React.useState('');
   const [checkinDateText, setCheckinDateText] = React.useState('');
   const [checkoutDateText, setCheckoutDateText] = React.useState('');
@@ -17,6 +20,11 @@ export const SearchPageContainer = () => {
   const [dirtyCheckin, setDirtyCheckin] = React.useState(false);
   const [dirtyCheckout, setDirtyCheckout] = React.useState(false);
   const [dirtyCity, setDirtyCity] = React.useState(false);
+
+  React.useEffect(() => {
+    const list = filterPurchasedResidences();
+    setPurchasedResList(list);
+  });
   
   const handleChangeCity = (event: any) => {
     setCity(event.target.value);
@@ -83,13 +91,22 @@ export const SearchPageContainer = () => {
     return hasBusyDays;
   };
 
-  const matchResidences = (): Residence[] => {
+  const handleSubmit = () => {
+    const list: Residence[] = filterAvailableResidences();
+    setAvailableResList(list);
+  };
+
+  const filterAvailableResidences = (): Residence[] => {
     const checkinDate = parseDate(checkinDateText);
     const checkoutDate = parseDate(checkoutDateText);
 
     return datasourceResidences.filter(
-      residence => residence.city == city && !containsBusyDay(residence, checkinDate, checkoutDate)
+      residence => !residence.purchased && residence.city == city && !containsBusyDay(residence, checkinDate, checkoutDate)
     );
+  };
+
+  const filterPurchasedResidences = (): Residence[] => {
+    return datasourceResidences.filter(residence => residence.purchased);
   };
 
   return (
@@ -97,10 +114,12 @@ export const SearchPageContainer = () => {
       onChangeCity={handleChangeCity}
       onChangeCheckinDate={handleChangeCheckinDate}
       onChangeCheckoutDate={handleChangeCheckoutDate}
-      onSubmit={matchResidences}
+      onSubmit={handleSubmit}
       onBlurCheckinDate={handleBlurCheckinDate}
       onBlurCheckoutDate={handleBlurCheckoutDate}
       onBlurCity={handleBlurCity}
+      availableResidences={availableResList}
+      purchasedResidences={purchasedResList}
       disabled={disableButton()}
       checkinInvalidDateFormat={checkinInvalidDateFormat}
       checkinNonExistingDate={checkinNonExistingDate}
