@@ -1,1 +1,21 @@
-# travel-simple
+# Travel Simple
+
+## Environment
+
+- Node: 10.16.3
+- npm: 6.9.0
+
+## How to run
+
+- Access `travel-simple` project directory from a terminal, run the command `npm start` and open the URL `http://localhost:3000` from a browser of your preference.
+
+## Dependencies
+
+The project uses the following dependencies:
+
+- bootstrap: 4.3.1
+- query-string: 6.11.0
+- react: 16.9.0
+- react-router-dom: 5.1.2
+- styled-components: 4.4.0
+- typescript: 3.6.4
