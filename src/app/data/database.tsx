@@ -8,7 +8,7 @@ export const getResidenceById = (id: number): Residence | null  => {
 
 export const populateResidences = async () => {
   const res: Residence[] = await getResidences();
-  datasourceResidences.push(...res);
+  datasourceResidences = res;
   console.log(datasourceResidences);
   if (datasourceResidences.length > 0) {
     console.log('Dados carregados corretamente: ' + datasourceResidences.length + ' carregadas.');
