@@ -28,10 +28,12 @@ const parseBedroomsData = (bedroomsData: any): Bedroom[] => {
 export const getResidences = async (): Promise<Residence[]> => {
   const hosts: Host[] = await getHosts();
   let residences: Residence[] = [];
-  hosts.map(async host => {
-    const bedrooms = await getBedroomsOfHost(host.id);
-    const residencesFromBedrooms = bedrooms.map(bedroom => mapHostAndBedroomToResidence(bedroom, host));
+  const bedroomPromises: Promise<Bedroom[]>[] = hosts.map(host => getBedroomsOfHost(host.id));
+  return Promise.all(bedroomPromises).then(function(bedroomLists) {
+    const bedrooms: Bedroom[] = bedroomLists.flat();
+    const residencesFromBedrooms = bedrooms.map(bedroom => mapHostAndBedroomToResidence(bedroom, hosts[0]));
     residences.push(...residencesFromBedrooms);
+  }).then(function resolve() {
+    return residences;
   });
-  return residences;
 };

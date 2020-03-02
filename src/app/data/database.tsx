@@ -7,11 +7,11 @@ export const getResidenceById = (id: number): Residence | null  => {
 }
 
 export const populateResidences = async () => {
-  datasourceResidences = await getResidences();
+  const res: Residence[] = await getResidences();
+  datasourceResidences.push(...res);
   console.log(datasourceResidences);
-  console.log(datasourceResidences[0]);
   if (datasourceResidences.length > 0) {
-    console.log('Dados carregados corretamente');
+    console.log('Dados carregados corretamente: ' + datasourceResidences.length + ' carregadas.');
   } else {
     datasourceResidences = placeholder;
     console.log('Usando placeholder');
@@ -30,26 +30,6 @@ const placeholder: Residence[] = [
     city: "Campos do Jordão",
     availablePlaces: 2,
     busyDays: [new Date('2020-02-17'), new Date('2020-02-18'), new Date('2020-02-19'), new Date('2020-02-20')],
-    purchased: false,
-  },
-  {
-    id: 2,
-    hotel: "Hotel Golden Park",
-    address: "Rodovia Floriano Rodrigues Pinheiro, 2000",
-    bedroomName: "Quarto Triplo Superior",
-    city: "Campos do Jordão",
-    availablePlaces: 3,
-    busyDays: [new Date('2020-02-21'), new Date('2020-02-22'), new Date('2020-02-27'), new Date('2020-02-28')],
-    purchased: false,
-  },
-  {
-    id: 3,
-    hotel: "Hotel Leão da Montanha",
-    address: "Rua Dr. Raul Mesquita, 443",
-    bedroomName: "Quarto Duplo Standard",
-    city: "Campos do Jordão",
-    availablePlaces: 2,
-    busyDays: [new Date('2020-02-23'), new Date('2020-02-24')],
     purchased: false,
   },
   {
@@ -82,36 +62,6 @@ const placeholder: Residence[] = [
     city: "São Paulo",
     availablePlaces: 2,
     busyDays: [new Date('2020-02-19'), new Date('2020-02-20')],
-    purchased: false,
-  },
-  {
-    id: 7,
-    hotel: "Holiday Inn Sao Paulo Parque Anhembi",
-    address: "Rua Professor Milton Rodriguez, 100 - Parque Anhembi",
-    bedroomName: "Quarto Duplo King",
-    city: "São Paulo",
-    availablePlaces: 2,
-    busyDays: [new Date('2020-02-23'), new Date('2020-02-24')],
-    purchased: false,
-  },
-  {
-    id: 8,
-    hotel: "Holiday Inn Sao Paulo Parque Anhembi",
-    address: "Rua Professor Milton Rodriguez, 100 - Parque Anhembi",
-    bedroomName: "Quarto Triplo",
-    city: "São Paulo",
-    availablePlaces: 3,
-    busyDays: [new Date('2020-02-25'), new Date('2020-02-26')],
-    purchased: false,
-  },
-  {
-    id: 9,
-    hotel: "Holiday Inn Sao Paulo Parque Anhembi",
-    address: "Rua Professor Milton Rodriguez, 100 - Parque Anhembi",
-    bedroomName: "Quarto Casal",
-    city: "São Paulo",
-    availablePlaces: 2,
-    busyDays: [new Date('2020-02-27'), new Date('2020-02-28'), new Date('2020-02-29')],
     purchased: false,
   },
 ];
