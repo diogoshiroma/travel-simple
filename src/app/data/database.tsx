@@ -25,6 +25,7 @@ const placeholder: Residence[] = [
   {
     id: 1,
     hotel: "Hotel Golden Park",
+    hotelId: 1,
     address: "Rodovia Floriano Rodrigues Pinheiro, 2000",
     bedroomName: "Quarto Duplo Standard",
     city: "Campos do Jordão",
@@ -35,6 +36,7 @@ const placeholder: Residence[] = [
   {
     id: 4,
     hotel: "Hotel Golden Park",
+    hotelId: 1,
     address: "Rodovia Floriano Rodrigues Pinheiro, 2000",
     bedroomName: "Quarto Duplo Superior",
     city: "Campos do Jordão",
@@ -47,6 +49,7 @@ const placeholder: Residence[] = [
   {
     id: 5,
     hotel: "North Palace Hotel",
+    hotelId: 4,
     address: "R. Santa Teresa de Jesus, 339 - Vila Santa Terezinha (Zona Norte)",
     bedroomName: "Quarto Triplo Superior",
     city: "São Paulo",
@@ -57,6 +60,7 @@ const placeholder: Residence[] = [
   {
     id: 6,
     hotel: "North Palace Hotel",
+    hotelId: 4,
     address: "R. Santa Teresa de Jesus, 339 - Vila Santa Terezinha (Zona Norte)",
     bedroomName: "Quarto Duplo Standard",
     city: "São Paulo",
