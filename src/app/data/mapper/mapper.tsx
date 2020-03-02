@@ -16,7 +16,8 @@ export const mapBedroomDataToBedroom = (bedroomData: any): Bedroom => {
     name: bedroomData.name,
     maximumGuests: bedroomData.maximum_guests,
     busyDates: bedroomData.busy_dates,
-    purchased: bedroomData.purchased, 
+    purchased: bedroomData.purchased,
+    hostId: bedroomData.host,
   };
 };
 

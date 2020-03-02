@@ -31,7 +31,8 @@ export const getResidences = async (): Promise<Residence[]> => {
   const bedroomPromises: Promise<Bedroom[]>[] = hosts.map(host => getBedroomsOfHost(host.id));
   return Promise.all(bedroomPromises).then(function(bedroomLists) {
     const bedrooms: Bedroom[] = bedroomLists.flat();
-    const residencesFromBedrooms = bedrooms.map(bedroom => mapHostAndBedroomToResidence(bedroom, hosts[0]));
+    const residencesFromBedrooms = bedrooms.map(bedroom => 
+      mapHostAndBedroomToResidence(bedroom, hosts.filter(host => host.id === bedroom.hostId)[0]))
     residences.push(...residencesFromBedrooms);
   }).then(function resolve() {
     return residences;

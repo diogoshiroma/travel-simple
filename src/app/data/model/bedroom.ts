@@ -4,4 +4,5 @@ export interface Bedroom {
   maximumGuests: number;
   busyDates: string;
   purchased: boolean;
+  hostId: number;
 }
