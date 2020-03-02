@@ -1,11 +1,26 @@
 import { Residence } from "../../model/entities";
+import { getResidences } from "./requests";
 
 export const getResidenceById = (id: number): Residence | null  => {
   const residences = datasourceResidences.filter(res => res.id === id);
   return residences.length > 0 ? residences[0] : null;
 }
 
-export let datasourceResidences: Residence[] = [
+export const populateResidences = async () => {
+  datasourceResidences = await getResidences();
+  console.log(datasourceResidences);
+  console.log(datasourceResidences[0]);
+  if (datasourceResidences.length > 0) {
+    console.log('Dados carregados corretamente');
+  } else {
+    datasourceResidences = placeholder;
+    console.log('Usando placeholder');
+  }
+}
+
+export let datasourceResidences: Residence[] = [];
+
+const placeholder: Residence[] = [
   // Campos do Jordão
   {
     id: 1,
