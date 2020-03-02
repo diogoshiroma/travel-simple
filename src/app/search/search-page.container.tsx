@@ -1,10 +1,11 @@
 import React from 'react';
 import { Residence } from '../../model/entities';
 import { SearchPage } from './search-page.component';
-import { datasourceResidences } from '../data';
+import { datasourceResidences, populateResidences } from '../data';
 import { parseDate, matchShortDate, isValidDate } from '../../model';
 
 export const SearchPageContainer = () => {
+  const [populatedResidences, setPopulatedResidences] = React.useState(false);
   const [availableResList, setAvailableResList] = React.useState<Residence[]>([]);
   const [purchasedResList, setPurchasedResList] = React.useState<Residence[]>([]);
   const [showPurchasedList, setShowPurchasedList] = React.useState(true);
@@ -23,6 +24,10 @@ export const SearchPageContainer = () => {
   const [dirtyCity, setDirtyCity] = React.useState(false);
 
     React.useEffect(() => {
+      if (!populatedResidences) {
+        setPopulatedResidences(true);
+        populateResidences();
+      }
       const list = filterPurchasedResidences();
       if (showPurchasedList) {
         setPurchasedResList(list);
