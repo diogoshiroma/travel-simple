@@ -38,3 +38,41 @@ export const getResidences = async (): Promise<Residence[]> => {
     return residences;
   });
 };
+
+const parseResidenceToBedroom = (residence: Residence) => {
+  const bedroom: Bedroom = {
+    id: residence.id,
+    busyDates: residence.busyDays.map(date => date.toISOString().split('T')[0]).join(';'),
+    hostId: residence.hotelId,
+    maximumGuests: residence.availablePlaces,
+    name: residence.bedroomName,
+    purchased: residence.purchased,
+  };
+  return bedroom;
+};
+
+const getHostOfResidence = (residence: Residence) => {
+  const host: Host = {
+    id: residence.hotelId,
+    address: residence.address,
+    city: residence.city,
+    name: residence.hotel,
+  };
+  return host;
+};
+
+export const setBedroomAsPurchased = async (residence: Residence) => {
+  const url = `${API_URL}/api/hosts/${residence.hotelId}/bedrooms/${residence.id}/`;
+  residence.purchased = true;
+  const purchasedBedroom: Bedroom = parseResidenceToBedroom(residence);
+  const data = {
+    pk: purchasedBedroom.id,
+    name: purchasedBedroom.name,
+    host: purchasedBedroom.hostId,
+    maximum_guests: purchasedBedroom.maximumGuests,
+    busy_dates: purchasedBedroom.busyDates,
+    purchased: purchasedBedroom.purchased,  
+  };
+  const axiosResponse: AxiosResponse<any> = await axios.put(url, data);
+  return axiosResponse.data;
+};

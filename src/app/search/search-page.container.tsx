@@ -26,12 +26,13 @@ export const SearchPageContainer = () => {
     React.useEffect(() => {
       if (!populatedResidences) {
         setPopulatedResidences(true);
-        populateResidences();
-      }
-      const list = filterPurchasedResidences();
-      if (showPurchasedList) {
-        setPurchasedResList(list);
-        setShowPurchasedList(false);
+        populateResidences().then(function resolve() {
+          const list = filterPurchasedResidences();
+          if (showPurchasedList) {
+            setPurchasedResList(list);
+            setShowPurchasedList(false);
+          }
+        });
       }
     });
   
