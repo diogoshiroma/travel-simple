@@ -25,6 +25,7 @@ export const mapHostAndBedroomToResidence = (bedroom: Bedroom, host: Host): Resi
   return {
     id: bedroom.id,
     hotel: host.name,
+    hotelId: host.id,
     address: host.address,
     city: host.city,
     bedroomName: bedroom.name,

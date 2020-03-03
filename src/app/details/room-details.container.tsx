@@ -1,6 +1,8 @@
 import React from 'react';
 import { Residence, setResidenceAsPurchased } from '../../model';
 import { RoomDetails } from './room-details.component';
+import { setBedroomAsPurchased } from '../data/requests';
+import { AxiosError } from 'axios';
 
 interface RoomDetailsContainerProps {
   residence: Residence | null;
@@ -17,6 +19,10 @@ export const RoomDetailsContainer = (props: RoomDetailsContainerProps) => {
   const handleClickBuyConfirm = () => {
     if (props.residence) {
       setResidenceAsPurchased(props.residence);
+      const data: Promise<any> = setBedroomAsPurchased(props.residence);
+      data.catch((error: AxiosError) => {
+        console.log(error); // show dialog (ja foi comprado...)
+      });
     }
     setShowDialogBuyConfirmation(false);
     setShowDialogBuyDone(true);
