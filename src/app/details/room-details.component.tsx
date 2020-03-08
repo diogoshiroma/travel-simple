@@ -82,7 +82,7 @@ export const RoomDetails = (props: RoomDetailsProps) => {
                     </Button>
                   :
                     <Button variant="info" onClick={props.onOpenTravelTour} block>
-                      {Strings.Components.ResidenceDetail.OpenTourFinder}
+                      {Strings.Components.ResidenceDetail.OpenTravelTour}
                     </Button>
                 }
               </>
