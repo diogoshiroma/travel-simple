@@ -10,13 +10,14 @@ import { Residence } from '../../model';
 interface RoomDetailsProps {
   residence: Residence | null;
   showDialogBuyConfirmation: boolean;
-  showDialogBuyDone: boolean;
+  showDialogBuyStatus: boolean;
+  textDialogBuyStatus: string;
   enablePurchase: boolean;
   enableAddToTour: boolean;
   onClickBuy: () => void;
   onClickBuyConfirm: () => void;
   onClickBuyCancel: () => void;
-  onClickBuyDone: () => void;
+  onClickBuyStatus: () => void;
   onClickAddToTour: () => void;
   onOpenTravelTour: () => void;
 }
@@ -98,12 +99,12 @@ export const RoomDetails = (props: RoomDetailsProps) => {
             onHideClick={props.onClickBuyCancel}
           />
           <Dialog
-            show={props.showDialogBuyDone}
-            title={Strings.Components.Dialog.Done.Title}
-            message={Strings.Components.Dialog.Done.Message}
-            btnConfirmLbl={Strings.Components.Dialog.Done.Confirm}
-            onConfirmClick={props.onClickBuyDone}
-            onHideClick={props.onClickBuyDone}
+            show={props.showDialogBuyStatus}
+            title={Strings.Components.Dialog.Status.Title}
+            message={props.textDialogBuyStatus}
+            btnConfirmLbl={Strings.Components.Dialog.Status.Confirm}
+            onConfirmClick={props.onClickBuyStatus}
+            onHideClick={props.onClickBuyStatus}
           />
         </Row>
       :

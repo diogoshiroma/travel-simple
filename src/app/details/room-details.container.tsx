@@ -2,6 +2,7 @@ import React from 'react';
 import { Residence, addBusyDates, containsBusyDay, hasBusyDates } from '../../model';
 import { RoomDetails } from './room-details.component';
 import { addLodgingEvent, updateBedroom } from '../data/requests';
+import { Strings } from '../../resources';
 
 interface RoomDetailsContainerProps {
   residence: Residence | null;
@@ -11,7 +12,8 @@ interface RoomDetailsContainerProps {
 
 export const RoomDetailsContainer = (props: RoomDetailsContainerProps) => {
   const [showDialogBuyConfirmation, setShowDialogBuyConfirmation] = React.useState(false);
-  const [showDialogBuyDone, setShowDialogBuyDone] = React.useState(false);
+  const [showDialogBuyStatus, setShowDialogBuyStatus] = React.useState(false);
+  const [textDialogBuyStatus, setTextDialogBuyStatus] = React.useState('');
   const [enableAddToTour, setEnableAddToTour] = React.useState(true);
 
   const handleClickBuy = () => {
@@ -20,14 +22,16 @@ export const RoomDetailsContainer = (props: RoomDetailsContainerProps) => {
 
   const handleClickBuyConfirm = () => {
     try {
+      setShowDialogBuyConfirmation(false);
       if (props.residence && props.startDate && props.endDate) {
         addBusyDates(props.residence, props.startDate, props.endDate);
         updateBedroom(props.residence);
       }
-      setShowDialogBuyConfirmation(false);
-      setShowDialogBuyDone(true);
+      setTextDialogBuyStatus(Strings.Components.Dialog.Status.MessageSuccess);  
     } catch (err) {
-      console.log(err);
+      setTextDialogBuyStatus(Strings.Components.Dialog.Status.MessageFailPrefix + err);
+    } finally {
+      setShowDialogBuyStatus(true);
     }
   };
 
@@ -35,8 +39,8 @@ export const RoomDetailsContainer = (props: RoomDetailsContainerProps) => {
     setShowDialogBuyConfirmation(false);
   };
 
-  const handleClickBuyDone = () => {
-    setShowDialogBuyDone(false);
+  const handleClickBuyStatus = () => {
+    setShowDialogBuyStatus(false);
   };
 
   const handleClickAddToTour = () => {
@@ -64,13 +68,14 @@ export const RoomDetailsContainer = (props: RoomDetailsContainerProps) => {
     <RoomDetails
       residence={props.residence}
       showDialogBuyConfirmation={showDialogBuyConfirmation}
-      showDialogBuyDone={showDialogBuyDone}
+      showDialogBuyStatus={showDialogBuyStatus}
+      textDialogBuyStatus={textDialogBuyStatus}
       enablePurchase={!purchasedRoom()}
       enableAddToTour={enableAddToTour}
       onClickBuy={handleClickBuy}
       onClickBuyConfirm={handleClickBuyConfirm}
       onClickBuyCancel={handleClickBuyCancel}
-      onClickBuyDone={handleClickBuyDone}
+      onClickBuyStatus={handleClickBuyStatus}
       onClickAddToTour={handleClickAddToTour}
       onOpenTravelTour={handleOpenTravelTour}
     />

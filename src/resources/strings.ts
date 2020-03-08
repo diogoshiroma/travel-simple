@@ -33,9 +33,10 @@ export let Strings = {
         Cancel: 'Cancelar',
         Confirm: 'Confirmar',
       },
-      Done: {
+      Status: {
         Title: 'Confirmação',
-        Message: 'Compra efetuada com sucesso!',
+        MessageSuccess: 'Compra efetuada com sucesso!',
+        MessageFailPrefix: 'Falha na compra: ',
         Confirm: 'OK',
       },
     },
