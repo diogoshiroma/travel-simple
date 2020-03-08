@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { Host, Bedroom } from './model';
-import { mapHostDataToHost, mapBedroomDataToBedroom, mapHostAndBedroomToResidence, parseBedroomToBedroomData, parseResidenceToLodginEvent } from './mapper';
+import { mapHostDataToHost, mapBedroomDataToBedroom, mapHostAndBedroomToResidence, parseResidenceToLodginEvent, parseBedroomToBedroomData, parseResidenceToBedroom } from './mapper';
 import { Residence } from '../../model/entities';
 import { LodginEvent } from './model/lodginEvent';
 
@@ -10,20 +10,20 @@ const TRAVEL_TOUR_API_URL = 'http://localhost:8006';
 export const getHosts = async (): Promise<Host[]> => {
   const url = `${TRAVEL_SIMPLE_API_URL}/api/hosts/`;
   const axiosResponse: AxiosResponse<any> = await axios.get(url);
-  return parseHostsData(axiosResponse.data);
+  return parseHostsArrayData(axiosResponse.data);
 }
 
-const parseHostsData = (hostsData: any): Host[] => {
+const parseHostsArrayData = (hostsData: any): Host[] => {
   return hostsData.data.map((hostData: any) => mapHostDataToHost(hostData));
 };
 
 export const getBedroomsOfHost = async (hostId: number): Promise<Bedroom[]> => {
   const url = `${TRAVEL_SIMPLE_API_URL}/api/hosts/${hostId}/bedrooms/`;
   const axiosResponse: AxiosResponse<any> = await axios.get(url);
-  return parseBedroomsData(axiosResponse.data);
+  return parseBedroomsArrayData(axiosResponse.data);
 }
 
-const parseBedroomsData = (bedroomsData: any): Bedroom[] => {
+const parseBedroomsArrayData = (bedroomsData: any): Bedroom[] => {
   return bedroomsData.data.map((bedroomData: any) => mapBedroomDataToBedroom(bedroomData));
 };
 
@@ -41,21 +41,8 @@ export const getResidences = async (): Promise<Residence[]> => {
   });
 };
 
-const parseResidenceToBedroom = (residence: Residence) => {
-  const bedroom: Bedroom = {
-    id: residence.id,
-    busyDates: residence.busyDays.map(date => date.toISOString().split('T')[0]).join(';'),
-    hostId: residence.hotelId,
-    maximumGuests: residence.availablePlaces,
-    name: residence.bedroomName,
-    purchased: residence.purchased,
-  };
-  return bedroom;
-};
-
-export const setBedroomAsPurchased = async (residence: Residence) => {
+export const updateBedroom = async (residence: Residence) => {
   const url = `${TRAVEL_SIMPLE_API_URL}/api/hosts/${residence.hotelId}/bedrooms/${residence.id}/`;
-  residence.purchased = true;
   const purchasedBedroom: Bedroom = parseResidenceToBedroom(residence);
   const data = parseBedroomToBedroomData(purchasedBedroom);
   const axiosResponse: AxiosResponse<any> = await axios.put(url, data);

@@ -1,5 +1,5 @@
 import { Host, Bedroom } from "../model";
-import { Residence } from "../../../model";
+import { Residence, dateToString, dateArrayToString } from "../../../model";
 import { BedroomData } from "../model/bedroomData";
 import { LodginEvent } from "../model/lodginEvent";
 
@@ -37,14 +37,26 @@ export const mapHostAndBedroomToResidence = (bedroom: Bedroom, host: Host): Resi
   };
 };
 
+export const parseResidenceToBedroom = (residence: Residence) => {
+  const bedroom: Bedroom = {
+    id: residence.id,
+    busyDates: dateArrayToString(residence.busyDays),
+    hostId: residence.hotelId,
+    maximumGuests: residence.availablePlaces,
+    name: residence.bedroomName,
+    purchased: residence.purchased,
+  };
+  return bedroom;
+};
+
 export const parseResidenceToLodginEvent = (residence: Residence, startDate: Date, endDate: Date): LodginEvent => {
   return {
     bedroom_id: residence.id,
     host_id: residence.hotelId,
     bedroom_name: residence.bedroomName,
     host_name: residence.hotel,
-    start_date: startDate.toISOString().split('T')[0],
-    end_date: endDate.toISOString().split('T')[0],
+    start_date: dateToString(startDate),
+    end_date: dateToString(endDate),
   };
 };
 

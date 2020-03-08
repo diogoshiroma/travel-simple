@@ -4,6 +4,7 @@ import { ResidenceCard, VSeparator } from '..';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { Link } from 'react-router-dom';
+import { dateToString } from '../../model/dates/date-parser';
 
 interface ResidencesListProps {
   residences: Residence[];
@@ -15,8 +16,8 @@ const RESIDENCES_PER_ROW = 4;
 
 export const ResidencesListComponent = (props: ResidencesListProps) => {
   const getQueryString = (res: Residence) => {
-    const startDateStr = !!props.startDate ? (props.startDate.toISOString().split('T')[0]) : '';
-    const endDateStr = !!props.endDate ? (props.endDate.toISOString().split('T')[0]) : '';
+    const startDateStr = !!props.startDate ? (dateToString(props.startDate)) : '';
+    const endDateStr = !!props.endDate ? (dateToString(props.endDate)) : '';
     const url = `/details?room=${res.id}${
       !!props.startDate ? `&startDate=${startDateStr}` : ''}${
       !!props.endDate ? `&endDate=${endDateStr}` : ''
