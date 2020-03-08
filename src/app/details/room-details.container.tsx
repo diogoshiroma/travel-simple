@@ -1,5 +1,5 @@
 import React from 'react';
-import { Residence, addBusyDates, containsBusyDay } from '../../model';
+import { Residence, addBusyDates, containsBusyDay, hasBusyDates } from '../../model';
 import { RoomDetails } from './room-details.component';
 import { addLodgingEvent, updateBedroom } from '../data/requests';
 
@@ -53,6 +53,8 @@ export const RoomDetailsContainer = (props: RoomDetailsContainerProps) => {
   const purchasedRoom = () => {
     if (props.residence && props.startDate && props.endDate) {
       return containsBusyDay(props.residence, props.startDate, props.endDate);
+    } else if (props.residence && !props.startDate && !props.endDate) {
+      return hasBusyDates(props.residence);
     } else {
       return false;
     }

@@ -37,6 +37,17 @@ export const mapHostAndBedroomToResidence = (bedroom: Bedroom, host: Host): Resi
   };
 };
 
+
+const parseStringDates = (dates: string): Date[] => {
+  if (dates === '') {
+    return [];
+  } else {
+    const strDates = dates.split(';');
+    const busyDays: Date[] = strDates.map(str => new Date(str));
+    return busyDays;
+  }
+};
+
 export const parseResidenceToBedroom = (residence: Residence) => {
   const bedroom: Bedroom = {
     id: residence.id,
@@ -69,10 +80,4 @@ export const parseBedroomToBedroomData = (bedroom: Bedroom): BedroomData => {
     busy_dates: bedroom.busyDates,
     purchased: bedroom.purchased,  
   };
-};
-
-const parseStringDates = (dates: string): Date[] => {
-  const strDates = dates.split(';');
-  const busyDays: Date[] = strDates.map(str => new Date(str));
-  return busyDays;
 };

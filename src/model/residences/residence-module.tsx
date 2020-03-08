@@ -2,7 +2,7 @@ import { Residence } from "../entities";
 
 export const addBusyDates = (residence: Residence, startDate: Date, endDate: Date) => {
   const dates: Date[] =  [];
-  for (var d = startDate; d <= endDate; d.setDate(d.getDate() + 1)) {
+  for (var d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
     dates.push(new Date(d));
   }
   residence.busyDays.push(...dates);
@@ -16,13 +16,13 @@ export const hasBusyDates = (residence: Residence) => {
 };
 
 export const containsBusyDay = (residence: Residence, checkinDate: Date, checkoutDate: Date): boolean => {
-  let hasBusyDays = false;
+  let hasBusyDaysInInterval = false;
   residence.busyDays.forEach(busyDate => {
     if (busyDate.getTime() >= checkinDate.getTime() &&
         busyDate.getTime() <= checkoutDate.getTime()) {
-      hasBusyDays = true;
+      hasBusyDaysInInterval = true;
       return;
     }
   });
-  return hasBusyDays;
+  return hasBusyDaysInInterval;
 };
