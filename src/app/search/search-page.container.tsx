@@ -140,6 +140,8 @@ export const SearchPageContainer = () => {
       dirtyCheckin={dirtyCheckin}
       dirtyCheckout={dirtyCheckout}
       dirtyCity={dirtyCity}
+      startDate={new Date(checkinDateText)}
+      endDate={new Date(checkoutDateText)}
     />
   );
 };

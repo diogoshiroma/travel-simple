@@ -24,6 +24,7 @@ export let Strings = {
       Thanks: 'Obrigado!',
       AddToTour: 'Deseja adicionar essa hospedagem ao roteiro?',
       AddToTourBtn: 'Adicionar ao roteiro.',
+      OpenTourFinder: 'Abrir TourFinder.',
     },
     Dialog: {
       Confirmation: {

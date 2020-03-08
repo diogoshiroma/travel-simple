@@ -11,10 +11,12 @@ interface RoomDetailsProps {
   residence: Residence | null;
   showDialogBuyConfirmation: boolean;
   showDialogBuyDone: boolean;
+  enableAddToTour: boolean;
   onClickBuy: () => void;
   onClickBuyConfirm: () => void;
   onClickBuyCancel: () => void;
   onClickBuyDone: () => void;
+  onClickAddToTour: () => void;
 }
 
 export const RoomDetails = (props: RoomDetailsProps) => {
@@ -71,9 +73,15 @@ export const RoomDetails = (props: RoomDetailsProps) => {
                 <VSeparator />
                 <H3>{Strings.Components.ResidenceDetail.AddToTour}</H3>
                 <VSeparator />
-                <Button variant="info" onClick={() => alert('Adicionado ao roteiro com sucesso!')} block>
-                  {Strings.Components.ResidenceDetail.AddToTourBtn}
-                </Button>
+                {props.enableAddToTour ?
+                    <Button variant="info" onClick={props.onClickAddToTour} block>
+                      {Strings.Components.ResidenceDetail.AddToTourBtn}
+                    </Button>
+                  :
+                    <Button variant="info" onClick={() => window.open('http://localhost:3006/trip-planner', '_blank')} block>
+                      {Strings.Components.ResidenceDetail.OpenTourFinder}
+                    </Button>
+                }
               </>
             }
           </Col>

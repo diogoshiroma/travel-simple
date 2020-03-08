@@ -1,12 +1,14 @@
 import axios, { AxiosResponse } from 'axios';
 import { Host, Bedroom } from './model';
-import { mapHostDataToHost, mapBedroomDataToBedroom, mapHostAndBedroomToResidence } from './mapper';
+import { mapHostDataToHost, mapBedroomDataToBedroom, mapHostAndBedroomToResidence, parseBedroomToBedroomData, parseResidenceToLodginEvent } from './mapper';
 import { Residence } from '../../model/entities';
+import { LodginEvent } from './model/lodginEvent';
 
-const API_URL = 'http://localhost:8000';
+const TRAVEL_SIMPLE_API_URL = 'http://localhost:8000';
+const TRAVEL_TOUR_API_URL = 'http://localhost:8006';
 
 export const getHosts = async (): Promise<Host[]> => {
-  const url = `${API_URL}/api/hosts/`;
+  const url = `${TRAVEL_SIMPLE_API_URL}/api/hosts/`;
   const axiosResponse: AxiosResponse<any> = await axios.get(url);
   return parseHostsData(axiosResponse.data);
 }
@@ -16,7 +18,7 @@ const parseHostsData = (hostsData: any): Host[] => {
 };
 
 export const getBedroomsOfHost = async (hostId: number): Promise<Bedroom[]> => {
-  const url = `${API_URL}/api/hosts/${hostId}/bedrooms/`;
+  const url = `${TRAVEL_SIMPLE_API_URL}/api/hosts/${hostId}/bedrooms/`;
   const axiosResponse: AxiosResponse<any> = await axios.get(url);
   return parseBedroomsData(axiosResponse.data);
 }
@@ -51,28 +53,18 @@ const parseResidenceToBedroom = (residence: Residence) => {
   return bedroom;
 };
 
-const getHostOfResidence = (residence: Residence) => {
-  const host: Host = {
-    id: residence.hotelId,
-    address: residence.address,
-    city: residence.city,
-    name: residence.hotel,
-  };
-  return host;
-};
-
 export const setBedroomAsPurchased = async (residence: Residence) => {
-  const url = `${API_URL}/api/hosts/${residence.hotelId}/bedrooms/${residence.id}/`;
+  const url = `${TRAVEL_SIMPLE_API_URL}/api/hosts/${residence.hotelId}/bedrooms/${residence.id}/`;
   residence.purchased = true;
   const purchasedBedroom: Bedroom = parseResidenceToBedroom(residence);
-  const data = {
-    pk: purchasedBedroom.id,
-    name: purchasedBedroom.name,
-    host: purchasedBedroom.hostId,
-    maximum_guests: purchasedBedroom.maximumGuests,
-    busy_dates: purchasedBedroom.busyDates,
-    purchased: purchasedBedroom.purchased,  
-  };
+  const data = parseBedroomToBedroomData(purchasedBedroom);
   const axiosResponse: AxiosResponse<any> = await axios.put(url, data);
+  return axiosResponse.data;
+};
+
+export const addLodgingEvent = async (residence: Residence, startDate: Date, endDate: Date) => {
+  const url = `${TRAVEL_TOUR_API_URL}/api/lodgingevents/`;
+  const lodgingEvent: LodginEvent = parseResidenceToLodginEvent(residence, startDate, endDate);
+  const axiosResponse: AxiosResponse<any> = await axios.post(url, lodgingEvent);
   return axiosResponse.data;
 };
