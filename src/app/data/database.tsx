@@ -9,12 +9,10 @@ export const getResidenceById = (id: number): Residence | null  => {
 export const populateResidences = async () => {
   try {
     datasourceResidences = await getResidences();
-    console.log(datasourceResidences);
     console.log('Dados carregados corretamente: ' + datasourceResidences.length + ' carregadas.');
   } catch (err) {
     datasourceResidences = placeholder;
     console.log('Usando placeholder');
-    console.log(datasourceResidences);
     console.log(err);
   }
 }
