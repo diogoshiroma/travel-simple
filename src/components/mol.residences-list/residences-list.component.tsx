@@ -15,10 +15,13 @@ const RESIDENCES_PER_ROW = 4;
 
 export const ResidencesListComponent = (props: ResidencesListProps) => {
   const getQueryString = (res: Residence) => {
-    // const startDateStr = !!props.startDate ? ('&startDate=' + props.startDate.toISOString().split('T')[0]) : '';
-    // const endDateStr = !!props.endDate ? ('&endDate=' + props.endDate.toISOString().split('T')[0]) : '';
-    // return '/details?room=' + res.id + startDateStr + endDateStr;
-    return '/details?room=' + res.id;
+    const startDateStr = !!props.startDate ? (props.startDate.toISOString().split('T')[0]) : '';
+    const endDateStr = !!props.endDate ? (props.endDate.toISOString().split('T')[0]) : '';
+    const url = `/details?room=${res.id}${
+      !!props.startDate ? `&startDate=${startDateStr}` : ''}${
+      !!props.endDate ? `&endDate=${endDateStr}` : ''
+    }`;
+    return url;
   };
 
   return (

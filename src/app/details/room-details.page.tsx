@@ -9,8 +9,8 @@ export class RoomDetailsPage extends React.Component<RouteComponentProps> {
   render() {
     const values = queryString.parse(this.props.location.search);
     const roomId = values.room;
-    const startDate = '2020-03-04'; //
-    const endDate = '2020-03-11'; //
+    const startDate = values.startDate;
+    const endDate = values.endDate;
     let residence: Residence | null;
 
     if (roomId && typeof roomId != 'object') {
